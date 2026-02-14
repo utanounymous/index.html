@@ -3,227 +3,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Syukuran Walimatul Khitan Bimasena Mahameru</title>
+    <title>Walimatul Khitan - Bimasena Mahameru</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <style>
-        :root {
-            --royal-blue: #0d47a1;
-            --gold: #b8860b;
-            --soft-bg: #f8f9fa;
+        :root { 
+            --accent-blue: #3498db;
+            --deep-blue: #2c3e50;
+            --glass: rgba(255, 255, 255, 0.85);
         }
 
-        body, html { 
-            margin: 0; padding: 0; font-family: 'Poppins', sans-serif; 
-            scroll-behavior: smooth; overflow-x: hidden; background: var(--soft-bg);
-        }
-
-        /* Overlay Buka Undangan */
-        #welcome-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), 
-                        url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=1920&auto=format&fit=crop');
-            background-size: cover; background-position: center;
-            z-index: 9999; display: flex; align-items: center; justify-content: center;
-            color: white; transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
-        }
-
-        /* Navigasi Bawah */
-        .bottom-nav {
-            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
-            padding: 12px 30px; border-radius: 50px; z-index: 1000;
-            display: none; gap: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-        .bottom-nav a { color: var(--royal-blue); font-size: 1.4rem; transition: 0.3s; }
-
-        section { min-height: 100vh; padding: 100px 20px; display: flex; align-items: center; justify-content: center; }
+        body { font-family: 'Montserrat', sans-serif; color: var(--deep-blue); scroll-behavior: smooth; overflow-x: hidden; background: #f0f4f8; }
         
-        .hero { 
-            background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
-                        url('https://www.transparenttextures.com/patterns/white-diamond.png');
-            text-align: center;
+        /* Typography */
+        h1 { font-family: 'Great Vibes', cursive; font-size: clamp(2.5rem, 8vw, 4.5rem); color: var(--accent-blue); }
+        .sub-title { font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase; color: #7f8c8d; }
+
+        /* Enhanced Parallax */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 80px 0;
         }
 
-        .font-khitan { font-family: 'Dancing Script', cursive; font-size: clamp(2.5rem, 8vw, 4rem); color: var(--royal-blue); }
-        .font-elegant { font-family: 'Playfair Display', serif; color: var(--gold); font-weight: 700; }
+        .bg-main { background-image: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80'); }
+        .bg-alt { background-image: linear-gradient(rgba(227,242,253,0.8), rgba(227,242,253,0.8)), url('https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&q=80'); }
 
-        .photo-frame {
-            width: 250px; height: 250px; border-radius: 50%; 
-            border: 8px solid white; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            margin: 0 auto 30px; overflow: hidden; position: relative;
-        }
-        .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
-
-        .card-custom {
-            background: white; border-radius: 30px; padding: 40px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.05);
-            position: relative; overflow: hidden;
-        }
-        .card-custom::before {
-            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 6px;
-            background: linear-gradient(90deg, var(--royal-blue), var(--gold));
+        /* Glass Card Custom */
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            padding: 50px 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            position: relative;
         }
 
-        .btn-main {
-            background: var(--royal-blue); color: white; border: none; padding: 12px 40px; 
-            border-radius: 50px; font-weight: 600; text-decoration: none; transition: 0.3s;
+        /* Foto Bimasena - Layout Khusus */
+        .profile-container {
+            position: relative;
+            margin-bottom: 30px;
         }
-        .btn-main:hover { background: var(--gold); color: white; transform: translateY(-3px); }
+        .img-bimasena {
+            width: 200px;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 25px;
+            border: 8px solid white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .name-overlay {
+            background: rgba(255,255,255,0.9);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-top: -20px;
+            position: relative;
+            z-index: 2;
+        }
 
-        .timer-box { 
-            background: white; color: var(--royal-blue); padding: 15px; border: 1px solid var(--royal-blue);
-            border-radius: 15px; min-width: 80px; display: inline-block; margin: 5px;
+        /* Timer Blue Style */
+        .timer-unit {
+            background: var(--accent-blue);
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            min-width: 85px;
+            flex: 1;
+            max-width: 100px;
         }
-        
-        footer a { color: var(--royal-blue); text-decoration: none; font-weight: 600; }
+
+        /* Floating Nav */
+        .nav-modern {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+            padding: 12px 25px;
+            border-radius: 50px;
+            display: flex;
+            gap: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .nav-modern a { color: var(--deep-blue); font-size: 1.2rem; transition: 0.3s; }
+        .nav-modern a:hover { color: var(--accent-blue); transform: translateY(-3px); }
+
+        /* Music Button */
+        #music-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 2000;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .chat-box { height: 300px; overflow-y: auto; background: rgba(0,0,0,0.02); border-radius: 20px; padding: 15px; }
+        .bubble { background: white; padding: 12px; border-radius: 15px 15px 15px 0; margin-bottom: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
     </style>
 </head>
 <body>
 
-    <div id="welcome-overlay">
-        <div class="text-center px-3">
-            <h6 class="mb-3" style="letter-spacing: 5px; opacity: 0.9;">UNDANGAN</h6>
-            <h1 class="font-khitan mb-4" style="color:white">Syukuran Walimatul Khitan <br> Bimasena Mahameru</h1>
-            <p class="mb-5">Kepada Bapak/Ibu/Saudara/i</p>
-            <button class="btn btn-outline-light rounded-pill px-5 py-3 fw-bold" onclick="openInvitation()">
-                <i class="fas fa-envelope-open me-2"></i> BUKA UNDANGAN
-            </button>
+    <button id="music-btn" onclick="toggleMusic()">
+        <i class="fas fa-compact-disc" id="music-icon"></i>
+        <audio id="bg-audio" loop>
+            <source src="https://www.bensound.com/bensound-music/bensound-memories.mp3" type="audio/mpeg">
+        </audio>
+    </button>
+
+    <div class="nav-modern">
+        <a href="#home"><i class="fas fa-home"></i></a>
+        <a href="#acara"><i class="fas fa-calendar"></i></a>
+        <a href="#ucapan"><i class="fas fa-envelope"></i></a>
+        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#qrModal"><i class="fas fa-qrcode"></i></a>
+    </div>
+
+    <section id="home" class="parallax bg-main">
+        <div class="container text-center" data-aos="zoom-in">
+            <div class="glass-card mx-auto" style="max-width: 850px;">
+                <p class="sub-title mb-2">Walimatul Khitan</p>
+                <h1>Bimasena Mahameru</h1>
+                <p class="px-md-5 mb-4 text-muted">"Semoga menjadi anak yang sholeh, berbakti kepada orang tua, dan berguna bagi agama serta bangsa."</p>
+                
+                <div class="row align-items-center">
+                    <div class="col-md-4">
+                        <div class="profile-container">
+                            <img src="https://lh3.googleusercontent.com/d/1JR-P62Fds4xxoKKv0swO13r3P3GY0NH1" class="img-bimasena" alt="Bimasena Mahameru">
+                            <br>
+                            <span class="name-overlay shadow-sm fw-bold">Bimasena Mahameru</span>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="bg-light p-2 rounded-pill mb-4 text-muted small">Bimasena</div>
+                        <div id="countdown" class="d-flex justify-content-center gap-2">
+                            <div class="timer-unit"><h4 id="days" class="mb-0 fw-bold">0</h4><small>HARI</small></div>
+                            <div class="timer-unit"><h4 id="hours" class="mb-0 fw-bold">0</h4><small>JAM</small></div>
+                            <div class="timer-unit"><h4 id="mins" class="mb-0 fw-bold">0</h4><small>MENIT</small></div>
+                            <div class="timer-unit"><h4 id="secs" class="mb-0 fw-bold">0</h4><small>DETIK</small></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="acara" class="parallax bg-alt text-center">
+        <div class="container" data-aos="fade-up">
+            <div class="glass-card mb-5">
+                <h2 class="mb-5 font-playfair">Waktu & Lokasi</h2>
+                <div class="row g-4">
+                    <div class="col-md-6 border-md-end">
+                        <i class="far fa-clock fa-3x mb-3 text-primary"></i>
+                        <h5>Sabtu, 21 Maret 2026</h5>
+                        <p>Pukul 09.00 WIB - Selesai</p>
+                    </div>
+                    <div class="col-md-6">
+                        <i class="fas fa-map-marker-alt fa-3x mb-3 text-danger"></i>
+                        <p>Jalan Rangkah Gang VI No. 58,<br>Kel. Rangkah, Kec. Tambaksari, Surabaya</p>
+                        <a href="https://maps.app.goo.gl/JGN1RgCLxhavNHnF9" target="_blank" class="btn btn-primary rounded-pill px-4">Buka Navigasi Map</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card mx-auto" style="max-width: 500px;" data-aos="flip-left">
+                <h5>Kado Digital</h5>
+                <div class="p-3 bg-white rounded-4 shadow-sm mt-3">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" width="100" class="mb-2">
+                    <h4 class="fw-bold" id="rek">057740821</h4>
+                    <button class="btn btn-sm btn-outline-primary rounded-pill" onclick="copyText()">Salin Rekening</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ucapan" class="parallax bg-main">
+        <div class="container">
+            <div class="glass-card">
+                <div class="row">
+                    <div class="col-md-5 mb-4" data-aos="fade-right">
+                        <h3>Kirim Ucapan</h3>
+                        <form id="wishForm">
+                            <input type="text" id="nama" class="form-control mb-3 rounded-3" placeholder="Nama Lengkap" required>
+                            <textarea id="pesan" class="form-control mb-3 rounded-3" rows="3" placeholder="Berikan doa terbaik..." required></textarea>
+                            <button type="submit" class="btn btn-primary w-100 rounded-pill py-2 shadow">Kirim Doa</button>
+                        </form>
+                    </div>
+                    <div class="col-md-7" data-aos="fade-left">
+                        <div class="chat-box shadow-inner" id="chatWindow">
+                            <div class="bubble"><strong>IVAO Indonesia:</strong><br><small>Selamat Bimasena! Semoga jadi kebanggaan keluarga.</small></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade" id="qrModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 rounded-5">
+                <div class="modal-body text-center p-5">
+                    <h4 class="mb-4">QR Check-in</h4>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=BIMASENA-MAHAMERU" class="mb-3 rounded-4 shadow">
+                    <p class="text-muted small">Silakan scan kode ini saat tiba di lokasi.</p>
+                </div>
+            </div>
         </div>
     </div>
 
-    <nav class="bottom-nav" id="mainNav">
-        <a href="#home"><i class="fas fa-home"></i></a>
-        <a href="#keluarga"><i class="fas fa-user-friends"></i></a>
-        <a href="#lokasi"><i class="fas fa-map-marked-alt"></i></a>
-        <a href="#ucapan"><i class="fas fa-comment-dots"></i></a>
-    </nav>
-
-    <section id="home" class="hero">
-        <div class="container">
-            <h5 style="letter-spacing: 4px; color: var(--gold);" class="mb-4">WALIMATUL KHITAN</h5>
-            <h1 class="font-khitan mb-4">Bimasena Mahameru</h1>
-            <p class="mb-5 fw-bold text-secondary">SABTU, 21 MARET 2026</p>
-            
-            <div id="timer" class="d-flex justify-content-center flex-wrap">
-                <div class="timer-box"><span id="days" class="fs-3 fw-bold d-block">00</span><small>HARI</small></div>
-                <div class="timer-box"><span id="hours" class="fs-3 d-block">00</span><small>JAM</small></div>
-                <div class="timer-box"><span id="mins" class="fs-3 d-block">00</span><small>MENIT</small></div>
-                <div class="timer-box"><span id="secs" class="fs-3 d-block">00</span><small>DETIK</small></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="keluarga" style="background: white;">
-        <div class="container text-center">
-            <div class="card-custom mx-auto" style="max-width: 750px;">
-                <div class="photo-frame">
-                    <img src="https://files.catbox.moe/p40p93.png" alt="Bimasena Mahameru">
-                </div>
-                <h2 class="font-khitan mb-4">Syukuran Walimatul Khitan</h2>
-                <h1 class="font-elegant mb-3" style="font-size: 2.5rem;">Bimasena Mahameru</h1>
-                <p class="text-muted px-md-5 mb-5">
-                    "Semoga kelak menjadi anak yang shaleh, berbakti kepada kedua orang tua, cerdas, 
-                    serta bermanfaat bagi sesama dan agama."
-                </p>
-                <hr class="w-25 mx-auto mb-5">
-                <div class="row">
-                    <div class="col-12">
-                        <p class="mb-1">Kami yang berbahagia,</p>
-                        <h4 class="font-elegant mt-3 mb-1">Amaldy Yusufi Usman, S.Kom, M.Sc</h4>
-                        <p class="text-muted">&</p>
-                        <h4 class="font-elegant mb-0">(Almh.) Widya Apriyanti, S.Pd</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="lokasi" style="background: #eef2f7;">
-        <div class="container text-center">
-            <div class="card-custom mx-auto" style="max-width: 650px;">
-                <h2 class="font-khitan mb-4">Waktu & Tempat</h2>
-                <div class="mb-4">
-                    <h4 class="fw-bold mb-1">Sabtu, 21 Maret 2026</h4>
-                    <p class="text-muted">Pukul 10.00 WIB - Selesai</p>
-                </div>
-                <div class="mt-5">
-                    <i class="fas fa-home fa-2x mb-3 text-primary"></i>
-                    <h5 class="font-elegant">Kediaman Keluarga</h5>
-                    <p class="mb-0">Jl. Rangkah VI No. 58</p>
-                    <p class="small text-muted">Kel. Rangkah, Kec. Tambaksari, Surabaya, 60135</p>
-                    <a href="https://goo.gl/maps/example" target="_blank" class="btn-main mt-4">
-                        <i class="fas fa-directions me-2"></i> PETUNJUK LOKASI
-                    </a>
-                </div>
-                <div class="mt-5 pt-4 border-top">
-                    <h4 class="font-elegant mb-3">Tanda Kasih</h4>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" width="100" class="mb-2">
-                    <h5 class="fw-bold mb-0">057740821</h5>
-                    <p class="small">a.n Amaldy Yusufi Usman</p>
-                    <button class="btn btn-outline-dark btn-sm rounded-pill px-4" onclick="copyRek()">Salin Rekening</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="ucapan" style="background: white;">
-        <div class="container">
-            <div class="card-custom mx-auto" style="max-width: 700px;">
-                <h2 class="font-khitan text-center mb-4">Doa & Harapan</h2>
-                <input type="text" id="nama" class="form-control mb-3 rounded-pill" placeholder="Nama Anda">
-                <textarea id="pesan" class="form-control mb-3 rounded-4" rows="3" placeholder="Tuliskan doa terbaik..."></textarea>
-                <button class="btn-main w-100 mb-5" onclick="addPesan()">KIRIM DOA RESTU</button>
-                <div id="listPesan" style="max-height: 250px; overflow-y: auto;">
-                    <div class="p-3 bg-light rounded-3 mb-2 border-start border-4 border-primary">
-                        <strong>IVAO Indonesia:</strong> Barakkallah Bimasena, semoga menjadi anak kebanggaan orang tua.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="text-center py-5 px-3 text-muted small">
-        Bagi yang mau pesan undangan digital silahkan hubungi whatsapp <br>
-        <a href="https://wa.me/6281232211686" target="_blank">0812-3221-1686</a>
-    </footer>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
     <script>
-        function openInvitation() {
-            document.getElementById('welcome-overlay').style.transform = 'translateY(-100%)';
-            document.getElementById('mainNav').style.display = 'flex';
-        }
+        AOS.init({ duration: 1000 });
 
-        const target = new Date("March 21, 2026 10:00:00").getTime();
+        // Countdown Logic
+        const target = new Date("March 21, 2026 09:00:00").getTime();
         setInterval(() => {
             const now = new Date().getTime();
-            const gap = target - now;
-            document.getElementById('days').innerText = Math.floor(gap / (1000 * 60 * 60 * 24));
-            document.getElementById('hours').innerText = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            document.getElementById('mins').innerText = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById('secs').innerText = Math.floor((gap % (1000 * 60)) / 1000);
+            const d = target - now;
+            $('#days').text(Math.floor(d / (1000 * 60 * 60 * 24)));
+            $('#hours').text(Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+            $('#mins').text(Math.floor((d % (1000 * 60 * 60)) / (1000 * 60)));
+            $('#secs').text(Math.floor((d % (1000 * 60)) / 1000));
         }, 1000);
 
-        function copyRek() {
-            navigator.clipboard.writeText("057740821");
-            alert("Nomor Rekening BCA berhasil disalin!");
-        }
-
-        function addPesan() {
-            const n = document.getElementById('nama').value;
-            const p = document.getElementById('pesan').value;
-            if(n && p) {
-                const item = document.createElement('div');
-                item.className = "p-3 bg-light rounded-3 mb-2 border-start border-4 border-primary";
-                item.innerHTML = `<strong>${n}:</strong> ${p}`;
-                document.getElementById('listPesan').prepend(item);
-                document.getElementById('nama').value = ""; 
-                document.getElementById('pesan').value = "";
+        // Music
+        const audio = document.getElementById('bg-audio');
+        function toggleMusic() {
+            if(audio.paused) { 
+                audio.play(); 
+                $('#music-icon').addClass('fa-spin text-warning');
+            } else { 
+                audio.pause(); 
+                $('#music-icon').removeClass('fa-spin text-warning');
             }
         }
+
+        // Copy
+        function copyText() {
+            navigator.clipboard.writeText($('#rek').text());
+            alert("Nomor rekening berhasil disalin!");
+        }
+
+        // Live Chat Simulation
+        $('#wishForm').submit(function(e){
+            e.preventDefault();
+            const item = `<div class="bubble" style="animation: slideIn 0.5s forwards">
+                <strong>${$('#nama').val()}:</strong><br><small>${$('#pesan').val()}</small>
+            </div>`;
+            $('#chatWindow').prepend(item);
+            this.reset();
+        });
     </script>
 </body>
 </html>
